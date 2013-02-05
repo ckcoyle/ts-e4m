@@ -1,0 +1,32 @@
+!!! 5
+html(lang='en')
+
+		<![endif]
+	head
+		meta(charset='utf-8')
+		title Topspin Powered HTML E4M
+		
+		//if lt IE 9
+			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+		
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+		
+		link(rel='stylesheet', href='stylesheets/screen.css')
+	
+	body
+		.container
+			h1 Topspin Powered HTML E4M
+			#ts-e4m.row.clearfix
+				form#signup(action='send.php', method='post')
+					.twelve.columns
+						input#email.erase.email(name='fan[email]', type='email', value='enter your email here', placeholder='enter your email here')
+						input#artist_id(name='artist_id', value='1051', type='hidden')
+						input#source_campaign(name='fan[source_campaign]', value='http://app.topspin.net/api/v1/artist/1051/campaign/10150220', type='hidden')
+						input#referring_url(name='fan[referring_url]', value='http://www.builtbyeande.com', type='hidden')
+						input#confirmation_target(name='fan[confirmation_target]', value='http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e', type='hidden')
+					.four.columns
+						input#submit(name='submit', type='submit', value='submit')
+
+		script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+		script(type='text/javascript', src='https://raw.github.com/malsup/form/master/jquery.form.js')
+		script(type='text/javascript', src='javascripts/init.js')
