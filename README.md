@@ -1,7 +1,7 @@
 #[Topspin Powered HTML E4M]
 
 ##Overview
-Quickly create an HTML and jQuery powered Topspin Email For Media Widget. Benefits include no Flash reliance, better mobile styling and completely custom interface. The main methods include jQuery Form Plugin, cURL, HTML5 form markup and a little bit of Javascript.    
+Quickly create an HTML and jQuery powered Topspin Email For Media Widget. Benefits include no Flash reliance, better mobile styling and completely custom interface. The main methods include <a href="https://github.com/malsup/form/">jQuery Form Plugin</a>, cURL, HTML5 form markup and a little bit of Javascript. Writtin in Jade, SASS & Coffee using Compass.
 
 Making your own custom HTML E4M doesn't get any easier than this!
 
@@ -12,8 +12,8 @@ Making your own custom HTML E4M doesn't get any easier than this!
 ###Include
 
 ````html
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/jquery.form.js"></script>
 ````
 
 ###HTML Form
@@ -26,14 +26,15 @@ This markup provides the necessary visible and hidden inputs to properly relay i
 In order to provide the `fan[confirmation_target]`, you will need to create a new Topspin Labs Download Anywhere URL. Go to http://labs.topspin.net/downloadanywhere/ and enter your credentials. Once generated, replace the `fan[confirmation_target]` value with your unique Download Anywhere URL.
 
 ````html
-<form id="signup" action="send.php" method="post" >
-	<input id="email"  name="fan[email]" type="email" value="enter your email here" placeholder="enter your email here" class="erase email" />	
-	<input name="artist_id" value="1051" id="artist_id" type="hidden">
-	<input name="fan[source_campaign]" value="http://app.topspin.net/api/v1/artist/1051/campaign/10150220" id="source_campaign" type="hidden">
-	<input name="fan[referring_url]" value="http://www.eyesandearsentertainment.com" id="referring_url" type="hidden">
-	<input name="fan[confirmation_target]" value="http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e" id="confirmation_target" type="hidden">			
-	<input id="submit" name="submit" type="submit" value="submit" />
-</form>
+form#signup(action='send.php', method='post')
+	.twelve.columns
+		input#email.erase.email(name='fan[email]', type='email', value='enter your email here', placeholder='enter your email here')
+		input#artist_id(name='artist_id', value='1051', type='hidden')
+		input#source_campaign(name='fan[source_campaign]', value='http://app.topspin.net/api/v1/artist/1051/campaign/10150220', type='hidden')
+		input#referring_url(name='fan[referring_url]', value='http://www.builtbyeande.com', type='hidden')
+		input#confirmation_target(name='fan[confirmation_target]', value='http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e', type='hidden')
+	.four.columns
+		input#submit(name='submit', type='submit', value='submit')
 ````
 
 ###jQuery Form Method
@@ -41,16 +42,14 @@ In order to provide the `fan[confirmation_target]`, you will need to create a ne
 Utilize jQuery form to submit the form via AJAX. Includes a basic success function that returns "Thanks, Check Your Inbox!" when properly submitted.
 
 ````javascript
-// ajax submit the form
-$('#signup').bind('submit', function(e) {
-	e.preventDefault();
-	$(this).ajaxSubmit({
-		success: function() { 
-			$('#email').val('Thanks, Check Your Inbox!'); //return a thank you message 
-			$('#email, #submit').prop('disabled', true); //disable the form upon submit
-		}			
-	});
-});
+# ajax submit the form
+$("#signup").bind "submit", (e) ->
+	e.preventDefault()
+	$("#signup").addClass "loading"
+	$(this).ajaxSubmit success: ->
+		$("#signup").removeClass "loading"
+		$("#email").val "Thanks, Check Your Inbox!"
+		$("#email, #submit").prop "disabled", true
 ````
 
 ###jQuery Input Clear
@@ -58,25 +57,16 @@ $('#signup').bind('submit', function(e) {
 Include to handle basic active / inactive states on the HTML form. Provides a clean way to remove the placeholder text when in focus and add it back in when default.
 
 ````javascript
-// clear out our form on focus
-$('input.erase').each(function() {
-	$(this)
-		.data('default', $(this).val())
-		.addClass('inactive')
-		.focus(function() {
-			$(this).removeClass('inactive');
-			if ($(this).val() == $(this).data('default') || '') {
-				$(this).val('');
-			}
-		})
-		.blur(function() {
-			var default_val = $(this).data('default');
-			if ($(this).val() == '') {
-				$(this).addClass('inactive');
-				$(this).val($(this).data('default'));
-			}
-	});
-});
+# clear out our form on focus
+$("input.erase").each ->
+	$(this).data("default", $(this).val()).addClass("inactive").focus(->
+		$(this).removeClass "inactive"
+		$(this).val ""	if $(this).val() is $(this).data("default") or ""
+	).blur ->
+		default_val = $(this).data("default")
+		if $(this).val() is ""
+			$(this).addClass "inactive"
+			$(this).val $(this).data("default")
 ````
 
 ###cURL PHP
