@@ -10,10 +10,30 @@ $(document).ready ->
 				$(this).val $(this).data("default")
 
 
-	$("#signup").bind "submit", (e) ->
+	$("#signup").on "submit", (e) ->
+		
+		email = $("#email").val()
+		source = $("#source_campaign").val()
+		ref = $("#referring_url").val()
+		confirmation = $("#confirmation_target").val()
+		id = $("#artist_id").val()
+
 		e.preventDefault()
 		$("#signup").addClass "loading"
-		$(this).ajaxSubmit success: ->
-			$("#signup").removeClass "loading"
-			$("#email").val "Thanks, Check Your Inbox!"
-			$("#email, #submit").prop "disabled", true
+		
+		$.ajax
+			url: "http://app.topspin.net/api/v1/fan/create_fan"
+			type: "POST"
+			dataType: "jsonp"
+			data: (
+				fan:
+					email: email
+					source_campaign: source
+					referring_url: ref
+					confirmation_target: confirmation
+					artist_id: id
+			)
+			success: (resp) ->
+				$("#signup").removeClass "loading"
+				$("#email").val "Thanks, Check Your Inbox!"
+				$("#email, #submit").prop "disabled", true
