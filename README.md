@@ -29,7 +29,7 @@ In order to provide the `fan[confirmation_target]`, you will need to create a ne
 	<input id="email"  name="fan[email]" type="email" value="enter your email here" placeholder="enter your email here" class="erase email" />	
 	<input name="artist_id" value="1051" id="artist_id" type="hidden">
 	<input name="fan[source_campaign]" value="http://app.topspin.net/api/v1/artist/1051/campaign/10150220" id="source_campaign" type="hidden">
-	<input name="fan[referring_url]" value="http://www.eyesandearsentertainment.com" id="referring_url" type="hidden">
+	<input name="fan[referring_url]" value="http://www.builtbyeande.com" id="referring_url" type="hidden">
 	<input name="fan[confirmation_target]" value="http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e" id="confirmation_target" type="hidden">			
 	<input id="submit" name="submit" type="submit" value="submit" />
 </form>
@@ -37,7 +37,7 @@ In order to provide the `fan[confirmation_target]`, you will need to create a ne
 
 ###jQuery Form Method
 
-Utilize jQuery form to submit the form via AJAX. Includes a basic success function that returns "Thanks, Check Your Inbox!" when properly submitted.
+Utilize jQuery's built in AJAX method to submit the form. Includes a basic success function that returns "Thanks, Check Your Inbox!" when on success.
 
 ````coffeescript
 // ajax submit the form
