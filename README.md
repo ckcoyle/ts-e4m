@@ -5,8 +5,6 @@ Quickly create an HTML and jQuery powered Topspin Email For Media Widget. Benefi
 
 Making your own custom HTML E4M doesn't get any easier than this!
 
-Working Demo: http://www.eyesandearsentertainment.com/htmle4m/
-
 ---
  
 ##Installation
