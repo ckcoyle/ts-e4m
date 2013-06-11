@@ -1,50 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>TS-E4M by austinmayer</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="TS-E4M : Topspin Powered Email For Media Widget" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>TS-E4M</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>TS-E4M</h1>
-        <p>Topspin Powered Email For Media Widget</p>
 
-        <p class="view"><a href="https://github.com/austinmayer/ts-e4m">View the Project on GitHub <small>austinmayer/ts-e4m</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/austinmayer/ts-e4m">View on GitHub</a>
 
+          <h1 id="project_title">TS-E4M</h1>
+          <h2 id="project_tagline">Topspin Powered Email For Media Widget</h2>
 
-        <ul>
-          <li><a href="https://github.com/austinmayer/ts-e4m/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/austinmayer/ts-e4m/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/austinmayer/ts-e4m">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>[Topspin Powered HTML E4M]</h1>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/austinmayer/ts-e4m/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/austinmayer/ts-e4m/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<h2>Overview</h2>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="topspin-powered-html-e4m" class="anchor" href="#topspin-powered-html-e4m"><span class="octicon octicon-link"></span></a>[Topspin Powered HTML E4M]</h1>
 
-<p>Quickly create an HTML and jQuery powered Topspin Email For Media Widget. Benefits include no Flash reliance, better mobile styling and completely custom interface. The main methods include <a href="https://github.com/malsup/form/">jQuery Form Plugin</a>, cURL, HTML5 form markup and a little bit of Javascript. Writtin in Jade, SASS &amp; Coffee using Compass.</p>
+<h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>Quickly create an HTML and jQuery powered Topspin Email For Media Widget. Benefits include no Flash reliance, better mobile styling and completely custom interface. </p>
 
 <p>Making your own custom HTML E4M doesn't get any easier than this!</p>
 
-<hr><h2>Installation</h2>
+<hr><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<h3>Include</h3>
+<h3>
+<a name="include" class="anchor" href="#include"><span class="octicon octicon-link"></span></a>Include</h3>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"javascripts/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"javascripts/jquery.form.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"js/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
-<h3>HTML Form</h3>
+<h3>
+<a name="html-form" class="anchor" href="#html-form"><span class="octicon octicon-link"></span></a>HTML Form</h3>
 
 <p>This markup provides the necessary visible and hidden inputs to properly relay information to the Topspin REST API. Change the <code>artist_id</code>, <code>fan[source_campaign]</code>, and <code>fan[referring_url]</code>, <code>fan[confirmation_target]</code>. In order to provide the <code>fan[source_campaign]</code>, you will need a relevant Topspin account and an Email For Media widget created within the platform. To locate the <code>fan[source_campaign]</code>, simply do the following:</p>
 
@@ -54,104 +61,70 @@
 <li>Find the url inside the  tag (ex. <a href="http://app.topspin.net/api/v1/artist/1051/campaign/10150220">http://app.topspin.net/api/v1/artist/1051/campaign/10150220</a>)</li>
 </ol><p>In order to provide the <code>fan[confirmation_target]</code>, you will need to create a new Topspin Labs Download Anywhere URL. Go to <a href="http://labs.topspin.net/downloadanywhere/">http://labs.topspin.net/downloadanywhere/</a> and enter your credentials. Once generated, replace the <code>fan[confirmation_target]</code> value with your unique Download Anywhere URL.</p>
 
-<div class="highlight"><pre>form#signup(action='send.php', method='post')
-    .twelve.columns
-        input#email.erase.email(name='fan[email]', type='email', value='enter your email here', placeholder='enter your email here')
-        input#artist_id(name='artist_id', value='1051', type='hidden')
-        input#source_campaign(name='fan[source_campaign]', value='http://app.topspin.net/api/v1/artist/1051/campaign/10150220', type='hidden')
-        input#referring_url(name='fan[referring_url]', value='http://www.builtbyeande.com', type='hidden')
-        input#confirmation_target(name='fan[confirmation_target]', value='http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e', type='hidden')
-    .four.columns
-        input#submit(name='submit', type='submit', value='submit')
+<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"signup"</span> <span class="na">action=</span><span class="s">""</span> <span class="na">method=</span><span class="s">""</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"email"</span>  <span class="na">name=</span><span class="s">"fan[email]"</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">value=</span><span class="s">"enter your email here"</span> <span class="na">placeholder=</span><span class="s">"enter your email here"</span> <span class="na">class=</span><span class="s">"erase email"</span> <span class="nt">/&gt;</span>  
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"artist_id"</span> <span class="na">value=</span><span class="s">"1051"</span> <span class="na">id=</span><span class="s">"artist_id"</span> <span class="na">type=</span><span class="s">"hidden"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"fan[source_campaign]"</span> <span class="na">value=</span><span class="s">"http://app.topspin.net/api/v1/artist/1051/campaign/10150220"</span> <span class="na">id=</span><span class="s">"source_campaign"</span> <span class="na">type=</span><span class="s">"hidden"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"fan[referring_url]"</span> <span class="na">value=</span><span class="s">"http://www.builtbyeande.com"</span> <span class="na">id=</span><span class="s">"referring_url"</span> <span class="na">type=</span><span class="s">"hidden"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"fan[confirmation_target]"</span> <span class="na">value=</span><span class="s">"http://labs.topspin.net/downloadanywhere/confirm.php?sessionid=188a0d0a116380c2180c37a7dcb33e1e"</span> <span class="na">id=</span><span class="s">"confirmation_target"</span> <span class="na">type=</span><span class="s">"hidden"</span><span class="nt">&gt;</span>          
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"submit"</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"submit"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
 </pre></div>
 
-<h3>jQuery Form Method</h3>
+<h3>
+<a name="jquery-form-method" class="anchor" href="#jquery-form-method"><span class="octicon octicon-link"></span></a>jQuery Form Method</h3>
 
-<p>Utilize jQuery form to submit the form via AJAX. Includes a basic success function that returns "Thanks, Check Your Inbox!" when properly submitted.</p>
+<p>Utilize jQuery's built in AJAX method to submit the form. Includes a basic success function that returns "Thanks, Check Your Inbox!" when on success.</p>
 
-<div class="highlight"><pre><span class="err">#</span> <span class="nx">ajax</span> <span class="nx">submit</span> <span class="nx">the</span> <span class="nx">form</span>
-<span class="nx">$</span><span class="p">(</span><span class="s2">"#signup"</span><span class="p">).</span><span class="nx">bind</span> <span class="s2">"submit"</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">-&gt;</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#signup"</span><span class="p">).</span><span class="nx">addClass</span> <span class="s2">"loading"</span>
-    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">ajaxSubmit</span> <span class="nx">success</span><span class="o">:</span> <span class="o">-&gt;</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">"#signup"</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s2">"loading"</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">"#email"</span><span class="p">).</span><span class="nx">val</span> <span class="s2">"Thanks, Check Your Inbox!"</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">"#email, #submit"</span><span class="p">).</span><span class="nx">prop</span> <span class="s2">"disabled"</span><span class="p">,</span> <span class="kc">true</span>
+<div class="highlight"><pre><span class="o">//</span> <span class="nx">ajax</span> <span class="nx">submit</span> <span class="nx">the</span> <span class="nx">form</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">signup"</span><span class="p">).</span><span class="nx">on</span> <span class="s">"submit"</span><span class="p">,</span> <span class="nf">(e) -&gt;</span>
+
+        <span class="nv">email = </span><span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">email"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="nv">source = </span><span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">source_campaign"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="nv">ref = </span><span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">referring_url"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="nv">confirmation = </span><span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">confirmation_target"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="nv">id = </span><span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">artist_id"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">signup"</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">"loading"</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span>
+            <span class="nv">url: </span><span class="s">"http://app.topspin.net/api/v1/fan/create_fan"</span>
+            <span class="nv">type: </span><span class="s">"POST"</span>
+            <span class="nv">dataType: </span><span class="s">"jsonp"</span>
+            <span class="nv">data: </span><span class="p">(</span>
+                <span class="nv">fan:</span>
+                    <span class="nv">email: </span><span class="nx">email</span>
+                    <span class="nv">source_campaign: </span><span class="nx">source</span>
+                    <span class="nv">referring_url: </span><span class="nx">ref</span>
+                    <span class="nv">confirmation_target: </span><span class="nx">confirmation</span>
+                    <span class="nv">artist_id: </span><span class="nx">id</span>
+            <span class="p">)</span>
+            <span class="nv">success: </span><span class="nf">(resp) -&gt;</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">signup"</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s">"loading"</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">email"</span><span class="p">).</span><span class="nx">val</span> <span class="s">"Thanks, Check Your Inbox!"</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s">"</span><span class="err">#</span><span class="s">email, </span><span class="err">#</span><span class="s">submit"</span><span class="p">).</span><span class="nx">prop</span> <span class="s">"disabled"</span><span class="p">,</span> <span class="kc">true</span>
 </pre></div>
 
-<h3>jQuery Input Clear</h3>
+<h3>
+<a name="jquery-input-clear" class="anchor" href="#jquery-input-clear"><span class="octicon octicon-link"></span></a>jQuery Input Clear</h3>
 
 <p>Include to handle basic active / inactive states on the HTML form. Provides a clean way to remove the placeholder text when in focus and add it back in when default.</p>
 
-<div class="highlight"><pre><span class="err">#</span> <span class="nx">clear</span> <span class="nx">out</span> <span class="nx">our</span> <span class="nx">form</span> <span class="nx">on</span> <span class="nx">focus</span>
-<span class="nx">$</span><span class="p">(</span><span class="s2">"input.erase"</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span>
-    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"default"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"inactive"</span><span class="p">).</span><span class="nx">focus</span><span class="p">(</span><span class="o">-&gt;</span>
-        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s2">"inactive"</span>
-        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span> <span class="s2">""</span>  <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="nx">is</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"default"</span><span class="p">)</span> <span class="nx">or</span> <span class="s2">""</span>
-    <span class="p">).</span><span class="nx">blur</span> <span class="o">-&gt;</span>
-        <span class="nx">default_val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"default"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="nx">is</span> <span class="s2">""</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span> <span class="s2">"inactive"</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"default"</span><span class="p">)</span>
+<div class="highlight"><pre><span class="o">//</span> <span class="nx">clear</span> <span class="nx">out</span> <span class="nx">our</span> <span class="nx">form</span> <span class="kc">on</span> <span class="nx">focus</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"input.erase"</span><span class="p">).</span><span class="nx">each</span> <span class="nf">-&gt;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">"default"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()).</span><span class="nx">addClass</span><span class="p">(</span><span class="s">"inactive"</span><span class="p">).</span><span class="nx">focus</span><span class="p">(</span><span class="nf">-&gt;</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s">"inactive"</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span> <span class="s">""</span>  <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">is</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">"default"</span><span class="p">)</span> <span class="o">or</span> <span class="s">""</span>
+        <span class="p">).</span><span class="nx">blur</span> <span class="nf">-&gt;</span>
+            <span class="nv">default_val = </span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">"default"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">is</span> <span class="s">""</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">"inactive"</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">"default"</span><span class="p">)</span>
 </pre></div>
 
-<h3>cURL PHP</h3>
-
-<p>Extract POST variables from the HTML form, open connection to Topspin API and send relevant fan email information. This will be the function that the HTML form action submits to over AJAX.</p>
-
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-
-<span class="cp">    extract($_POST);</span>
-
-<span class="cp">    //topspin email for media widget</span>
-
-<span class="cp">    //set POST variables</span>
-<span class="cp">    $url = 'http://app.topspin.net/api/v1/fan/create_fan';</span>
-<span class="cp">    $fields = array(</span>
-<span class="cp">        'artist_id'=&gt;urlencode($artist_id),</span>
-<span class="cp">        'fan[source_campaign]'=&gt;urlencode($fan['source_campaign']),</span>
-<span class="cp">        'fan[email]'=&gt;urlencode($fan['email']),</span>
-<span class="cp">        'fan[referring_url]'=&gt;urlencode($fan['referring_url']),</span>
-<span class="cp">        'fan[confirmation_target]'=&gt;urlencode($fan['confirmation_target'])</span>
-<span class="cp">    );</span>
-
-<span class="cp">    //url-ify the data for the POST</span>
-<span class="cp">    foreach($fields as $key=&gt;$value) { $fields_string .= $key.'='.$value.'&amp;'; }</span>
-<span class="cp">    rtrim($fields_string,'&amp;');</span>
-
-<span class="cp">    $url = $url . '?' . $fields_string;</span>
-
-<span class="cp">    //open connection</span>
-<span class="cp">    $ch = curl_init();</span>
-
-<span class="cp">    //set the url, number of POST vars, POST data</span>
-<span class="cp">    curl_setopt($ch,CURLOPT_URL,$url);</span>
-
-<span class="cp">    header('Content-type: application/json');</span>
-
-<span class="cp">    //execute post</span>
-<span class="cp">    $result = json_decode( curl_exec($ch) );</span>
-
-<span class="cp">    //close connection</span>
-<span class="cp">    curl_close($ch);</span>
-
-
-<span class="cp">    $message = array();</span>
-<span class="cp">    if($result['success']){</span>
-<span class="cp">        $message['success'] = true;</span>
-<span class="cp">    }else{</span>
-<span class="cp">        $message['error'] = $result['error'];</span>
-<span class="cp">    }</span>
-
-<span class="cp">    // and finally return true</span>
-<span class="cp">    //header('Content-type: application/json');</span>
-<span class="cp">    //echo json_encode($message);</span>
-
-<span class="cp">?&gt;</span>
-
-</pre></div>
-
-<hr><h2>Copyright and License</h2>
+<hr><h2>
+<a name="copyright-and-license" class="anchor" href="#copyright-and-license"><span class="octicon octicon-link"></span></a>Copyright and License</h2>
 
 <p>Dual licensed under the MIT and GPL licenses:</p>
 
@@ -167,12 +140,17 @@ The MIT License is recommended for most projects. It is simple and easy to under
 
 <hr>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/austinmayer">austinmayer</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">TS-E4M maintained by <a href="https://github.com/austinmayer">austinmayer</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
